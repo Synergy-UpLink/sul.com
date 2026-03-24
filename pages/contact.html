@@ -1,0 +1,220 @@
+---
+layout: default
+title: Contact
+description: Start a conversation with Synergy UpLink. Schedule a free discovery call — no sales pitch, just an honest conversation about your goals.
+permalink: /contact/
+---
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Get in Touch</div>
+    <h1>Let's have a real<br>conversation</h1>
+    <p class="lead">No sales pitch. No commitment required. Just 30 minutes to understand your situation and see if we're the right fit to help.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="contact-layout">
+
+      <div class="contact-form-wrap">
+        <h2>Send us a message</h2>
+        <p>Tell us a bit about your organization and what you're working through. We'll respond within one business day.</p>
+
+        <!-- Replace action="#" with your Formspree endpoint or other form handler -->
+        <form id="contact-form" action="#" method="POST" style="margin-top:2rem">
+          <input type="hidden" name="_subject" value="New inquiry from Synergy UpLink website" />
+
+          <div class="grid-2" style="gap:1rem">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="org">Organization</label>
+              <input type="text" id="org" name="organization" placeholder="Acme Nonprofit" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@yourorg.org" required />
+          </div>
+
+          <div class="form-group">
+            <label for="org-type">Organization Type</label>
+            <select id="org-type" name="org_type">
+              <option value="" disabled selected>Select one…</option>
+              <option value="nonprofit">Nonprofit / NGO</option>
+              <option value="cooperative">Worker Cooperative / Social Enterprise</option>
+              <option value="mutual-aid">Mutual Aid / Grassroots Group</option>
+              <option value="small-business">Small Business</option>
+              <option value="individual">Individual / Freelancer</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="service">Primary Area of Interest</label>
+            <select id="service" name="service_area">
+              <option value="" disabled selected>Select one…</option>
+              <option value="infrastructure">Digital Infrastructure</option>
+              <option value="content">Communication & Content</option>
+              <option value="operations">Operational Technology</option>
+              <option value="strategy">Strategic Consulting</option>
+              <option value="unsure">Not sure yet — I need to talk it through</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">What's going on? <span style="color:var(--color-text-muted);font-weight:300">(as much or as little as you'd like)</span></label>
+            <textarea id="message" name="message" placeholder="Tell us about your organization, the challenge you're facing, or the project you have in mind…" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Approximate Budget Range <span style="color:var(--color-text-muted);font-weight:300">(optional — helps us scope appropriately)</span></label>
+            <select id="budget" name="budget">
+              <option value="" disabled selected>Select one…</option>
+              <option value="under-500">Under $500</option>
+              <option value="500-2000">$500 – $2,000</option>
+              <option value="2000-5000">$2,000 – $5,000</option>
+              <option value="5000-15000">$5,000 – $15,000</option>
+              <option value="over-15000">$15,000+</option>
+              <option value="flexible">Flexible / Let's discuss</option>
+            </select>
+          </div>
+
+          <p id="form-status" style="margin-bottom:1rem;font-size:0.9rem"></p>
+
+          <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">
+            Send Message
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="contact-sidebar">
+
+        <div class="contact-info-block">
+          <h3>Other ways to reach us</h3>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Email</span>
+            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+          </div>
+          <div class="contact-info-item">
+            <span class="contact-info-label">Response time</span>
+            <span>Within one business day</span>
+          </div>
+        </div>
+
+        <div class="contact-info-block">
+          <h3>What to expect</h3>
+          <ol class="contact-steps">
+            <li>
+              <span class="step-num">1</span>
+              <div>
+                <strong>We read your message carefully</strong>
+                <p>Not a template response — an actual reply from a human who reviewed what you wrote.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <div>
+                <strong>We schedule a discovery call</strong>
+                <p>30 minutes, free of charge, no commitment. We ask questions; you ask questions.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <div>
+                <strong>We send a scoped proposal</strong>
+                <p>If there's a clear fit, we'll put together a proposal. You decide whether to move forward.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="contact-info-block" style="background:rgba(42,184,160,0.05);border:1px solid rgba(42,184,160,0.18);border-radius:12px;padding:1.5rem">
+          <p style="font-size:0.9rem;margin:0;color:var(--color-text)"><strong style="color:var(--color-primary)">Note on budget:</strong> Please don't rule yourself out based on budget. We have sliding scale options and can often scope a smaller engagement that gets you moving. Just be honest with us and we'll do the same.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 4rem;
+  align-items: start;
+}
+@media (max-width: 1024px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+.contact-form-wrap h2 { margin-bottom: 0.75rem; }
+.contact-sidebar { display: flex; flex-direction: column; gap: 2rem; }
+
+.contact-info-block h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.contact-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+.contact-info-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+.contact-info-item a,
+.contact-info-item span:not(.contact-info-label) {
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+.contact-info-item a:hover { color: var(--color-primary); }
+
+.contact-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.contact-steps li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-glow);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.contact-steps strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  margin-bottom: 3px;
+}
+.contact-steps p {
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.6;
+}
+</style>

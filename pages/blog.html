@@ -1,0 +1,92 @@
+---
+layout: default
+title: Resources & Articles
+description: Practical articles on technology for nonprofits, small businesses, and community organizations from Synergy UpLink.
+permalink: /blog/
+---
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Resources</div>
+    <h1>Practical thinking on<br>technology that serves people</h1>
+    <p class="lead">Articles, guides, and perspectives for organizations navigating technology decisions without a dedicated IT team.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="grid-3">
+      {% for post in site.posts %}
+      <a href="{{ post.url | relative_url }}" class="post-card reveal">
+        <div class="post-card__meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+          {% if post.category %}<span>· {{ post.category }}</span>{% endif %}
+          {% if post.read_time %}<span>· {{ post.read_time }} min read</span>{% endif %}
+        </div>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.excerpt | strip_html | truncate: 140 }}</p>
+        <span class="post-card__link">Read more →</span>
+      </a>
+      {% else %}
+
+      <!-- Static fallback posts -->
+      <a href="#" class="post-card reveal">
+        <div class="post-card__meta">
+          <time>March 2025</time><span>· Infrastructure</span><span>· 6 min read</span>
+        </div>
+        <h3>Choosing the Right Communication Tools for Your Organization</h3>
+        <p>Slack, Teams, email lists, Discord — the options are endless and the wrong choice wastes everyone's time. Here's how to think through it.</p>
+        <span class="post-card__link">Read more →</span>
+      </a>
+
+      <a href="#" class="post-card reveal">
+        <div class="post-card__meta">
+          <time>February 2025</time><span>· Content</span><span>· 8 min read</span>
+        </div>
+        <h3>Podcast Setup on a Budget: What You Actually Need</h3>
+        <p>You don't need a professional studio. You need a quiet room, the right microphone, and a sustainable workflow. This guide covers the rest.</p>
+        <span class="post-card__link">Read more →</span>
+      </a>
+
+      <a href="#" class="post-card reveal">
+        <div class="post-card__meta">
+          <time>January 2025</time><span>· Nonprofits</span><span>· 5 min read</span>
+        </div>
+        <h3>Website Basics for Nonprofits: What You Need (and What You Don't)</h3>
+        <p>Too many nonprofit sites are either too expensive to maintain or too outdated to be useful. Here's the baseline every organization should hit.</p>
+        <span class="post-card__link">Read more →</span>
+      </a>
+
+      <a href="#" class="post-card reveal">
+        <div class="post-card__meta">
+          <time>December 2024</time><span>· Operations</span><span>· 7 min read</span>
+        </div>
+        <h3>The Hidden Cost of Bad CRM Choices</h3>
+        <p>A CRM that doesn't fit your organization doesn't just waste money — it creates the kind of data debt that takes years to clean up.</p>
+        <span class="post-card__link">Read more →</span>
+      </a>
+
+      <a href="#" class="post-card reveal">
+        <div class="post-card__meta">
+          <time>November 2024</time><span>· Security</span><span>· 6 min read</span>
+        </div>
+        <h3>Small Organizations Are Targets Too: A Practical Security Primer</h3>
+        <p>You don't need to be a bank to get hacked. Community organizations are increasingly targeted precisely because they're assumed to be unprotected.</p>
+        <span class="post-card__link">Read more →</span>
+      </a>
+
+      <a href="#" class="post-card reveal">
+        <div class="post-card__meta">
+          <time>October 2024</time><span>· Strategy</span><span>· 9 min read</span>
+        </div>
+        <h3>When to Build vs. Buy: A Framework for Non-Technical Decision Makers</h3>
+        <p>Custom software sounds appealing. Off-the-shelf sounds easy. Here's how to think through the decision without getting sold to.</p>
+        <span class="post-card__link">Read more →</span>
+      </a>
+
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include cta.html %}

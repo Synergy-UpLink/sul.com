@@ -1,0 +1,212 @@
+// ============================================================
+// Base & Reset
+// ============================================================
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg:        #{$ink};
+  --color-bg-soft:   #{$ink-soft};
+  --color-surface:   #{$teal-deep};
+  --color-primary:   #{$teal-bright};
+  --color-accent:    #{$burgundy-light};
+  --color-gold:      #{$gold};
+  --color-text:      #{$pearl};
+  --color-text-muted:#{$smoke};
+  --color-border:    rgba(42, 184, 160, 0.18);
+  --color-glow:      rgba(42, 184, 160, 0.08);
+
+  --font-display: #{$font-display};
+  --font-body:    #{$font-body};
+
+  --transition: 0.3s #{$ease-out};
+  --transition-slow: 0.6s #{$ease-out};
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  font-weight: 300;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+
+  &:hover {
+    color: var(--color-gold);
+  }
+}
+
+ul, ol {
+  list-style: none;
+}
+
+::selection {
+  background: rgba(42, 184, 160, 0.3);
+  color: $white;
+}
+
+// ============================================================
+// Typography Scale
+// ============================================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); }
+h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); }
+h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); }
+h4 { font-size: 1.2rem; }
+
+p {
+  color: var(--color-text-muted);
+  margin-bottom: $space-md;
+  font-size: 1.05rem;
+
+  &:last-child { margin-bottom: 0; }
+}
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 300;
+  color: var(--color-text);
+}
+
+// ============================================================
+// Layout Utilities
+// ============================================================
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 $space-lg;
+
+  @media (max-width: $bp-md) {
+    padding: 0 $space-md;
+  }
+}
+
+.section {
+  padding: $space-3xl 0;
+
+  @media (max-width: $bp-md) {
+    padding: $space-2xl 0;
+  }
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  margin-bottom: $space-md;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--color-primary);
+  }
+}
+
+.section-header {
+  max-width: 680px;
+  margin-bottom: $space-2xl;
+
+  h2 { margin-bottom: $space-md; }
+
+  &.centered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    .section-label {
+      justify-content: center;
+      &::before { display: none; }
+    }
+  }
+}
+
+// Grid Utilities
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-lg;
+
+  @media (max-width: $bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-lg;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-lg;
+
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Decorative divider
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  margin: $space-lg 0;
+  border: none;
+
+  &.centered { margin-left: auto; margin-right: auto; }
+}

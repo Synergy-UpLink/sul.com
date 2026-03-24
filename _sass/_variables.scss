@@ -1,0 +1,55 @@
+// ============================================================
+// Synergy UpLink — Design Tokens
+// ============================================================
+
+// Colors — Jewel Tones
+$teal-deep:       #0d3d3d;
+$teal-mid:        #1a6b6b;
+$teal-bright:     #2ab8a0;
+$teal-glow:       #3dd9be;
+
+$burgundy:        #7c2842;
+$burgundy-light:  #a83458;
+$gold:            #c9972b;
+$gold-light:      #e6b84a;
+
+$forest:          #1a3d2b;
+$forest-mid:      #2d6b47;
+
+$ink:             #0a1a1a;
+$ink-soft:        #162626;
+$smoke:           #8fb3b3;
+$mist:            #c5dada;
+$pearl:           #f0f7f7;
+$white:           #ffffff;
+
+// Typography
+$font-display:    'Playfair Display', Georgia, serif;
+$font-body:       'DM Sans', 'Helvetica Neue', sans-serif;
+$font-mono:       'JetBrains Mono', monospace;
+
+// Spacing
+$space-xs:   0.25rem;
+$space-sm:   0.5rem;
+$space-md:   1rem;
+$space-lg:   2rem;
+$space-xl:   4rem;
+$space-2xl:  6rem;
+$space-3xl:  9rem;
+
+// Breakpoints
+$bp-sm:  640px;
+$bp-md:  768px;
+$bp-lg:  1024px;
+$bp-xl:  1280px;
+
+// Transitions
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+// Borders
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-pill: 100px;
