@@ -11,7 +11,7 @@
   padding: 0;
   transition: background var(--transition-slow), backdrop-filter var(--transition-slow), box-shadow var(--transition-slow);
 
-  &.scrolled {  
+  &.scrolled {
     background: rgba(var(--color-bg-raw), 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -23,33 +23,78 @@
     align-items: center;
     justify-content: space-between;
     height: 72px;
+    transition: height var(--transition-slow);
+  }
+
+  // Taller bar before scrolling
+  &:not(.scrolled) &__inner {
+    height: 96px;
   }
 
   &__logo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
     text-decoration: none;
     line-height: 1;
 
     &:hover {
       text-decoration: none;
     }
+  }
+
+  &__logo-img {
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+    // Smooth size transition
+    width: 56px;
+    height: 56px;
+    transition: width var(--transition-slow), height var(--transition-slow);
+  }
+
+  &__logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .logo-primary {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+    font-size: 1.9rem;
+    transition: font-size var(--transition-slow);
+  }
+
+  .logo-accent {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    opacity: 1;
+    max-height: 20px;
+    overflow: hidden;
+    transition: opacity var(--transition-slow), max-height var(--transition-slow);
+  }
+
+  // Compact state after scrolling
+  .site-nav.scrolled {
+    .site-nav__logo-img {
+      width: 36px;
+      height: 36px;
+    }
 
     .logo-primary {
-      font-family: var(--font-display);
       font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--color-text);
-      letter-spacing: -0.01em;
     }
 
     .logo-accent {
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--color-primary);
-      margin-top: 1px;
+      opacity: 0;
+      max-height: 0;
     }
   }
 
@@ -83,7 +128,6 @@
     }
   }
 
-  // Mobile hamburger
   &__toggle {
     display: none;
     flex-direction: column;

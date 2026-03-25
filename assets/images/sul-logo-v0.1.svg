@@ -1,0 +1,292 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 449 514" width="449" height="514">
+  <defs>
+
+    <!-- Sun / orange orb -->
+    <radialGradient id="grad-sun" cx="50%" cy="40%" r="50%">
+      <stop offset="0%"   stop-color="#FFD966"/>
+      <stop offset="50%"  stop-color="#F5A800"/>
+      <stop offset="100%" stop-color="#D97000"/>
+    </radialGradient>
+
+    <!-- Main S-swirl: teal body -->
+    <linearGradient id="grad-swirl-teal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#00C8A8"/>
+      <stop offset="50%"  stop-color="#00A888"/>
+      <stop offset="100%" stop-color="#006858"/>
+    </linearGradient>
+
+    <!-- Upper swirl arc: gold-green transition -->
+    <linearGradient id="grad-swirl-upper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#B8BE00"/>
+      <stop offset="40%"  stop-color="#8AAA00"/>
+      <stop offset="100%" stop-color="#5A8800"/>
+    </linearGradient>
+
+    <!-- Left leaf: bright green -->
+    <linearGradient id="grad-leaf-left" x1="0%" y1="0%" x2="60%" y2="100%">
+      <stop offset="0%"   stop-color="#18CC00"/>
+      <stop offset="50%"  stop-color="#00A800"/>
+      <stop offset="100%" stop-color="#006830"/>
+    </linearGradient>
+
+    <!-- Lower leaf / tail -->
+    <linearGradient id="grad-leaf-lower" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#009878"/>
+      <stop offset="100%" stop-color="#004848"/>
+    </linearGradient>
+
+    <!-- Gear large: teal-green -->
+    <linearGradient id="grad-gear-large" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#00C0A0"/>
+      <stop offset="50%"  stop-color="#009878"/>
+      <stop offset="100%" stop-color="#006858"/>
+    </linearGradient>
+
+    <!-- Gear small top: gold -->
+    <linearGradient id="grad-gear-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#F5C800"/>
+      <stop offset="100%" stop-color="#C88000"/>
+    </linearGradient>
+
+    <!-- Gear small bottom: olive-green -->
+    <linearGradient id="grad-gear-olive" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#98B800"/>
+      <stop offset="100%" stop-color="#607800"/>
+    </linearGradient>
+
+    <!-- Drop shadow for depth -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="rgba(0,0,0,0.18)"/>
+    </filter>
+
+  </defs>
+
+  <!-- ═══════════════════════════════════════════
+       LEFT LEAF — broad swept leaf, upper-left
+  ════════════════════════════════════════════ -->
+  <path
+    d="M 68 180
+       C 40 155, 28 200, 38 240
+       C 46 268, 60 290, 75 318
+       C 88 344, 95 368, 88 390
+       C 78 415, 68 428, 72 445
+       C 84 430, 108 408, 118 382
+       C 130 352, 124 325, 112 298
+       C 100 272, 88 248, 84 220
+       C 80 196, 82 172, 98 155
+       C 88 158, 76 168, 68 180 Z"
+    fill="url(#grad-leaf-left)"
+    filter="url(#shadow)"
+  />
+
+  <!-- Leaf highlight -->
+  <path
+    d="M 78 200
+       C 72 220, 74 245, 82 265
+       C 88 248, 86 222, 82 205 Z"
+    fill="rgba(255,255,255,0.18)"
+  />
+
+  <!-- ═══════════════════════════════════════════
+       UPPER SWIRL — the wide gold-green arc
+       sweeping from upper-left down and right
+  ════════════════════════════════════════════ -->
+  <path
+    d="M 100 100
+       C 130 70,  200 62,  250 78
+       C 295 92,  320 118, 330 148
+       C 342 182, 328 215, 305 235
+       C 282 255, 250 262, 222 258
+       C 196 254, 172 242, 155 228
+       C 140 215, 132 198, 130 182
+       C 128 162, 138 144, 155 136
+       C 172 128, 196 132, 212 142
+       C 228 152, 238 168, 238 185
+       C 238 200, 228 213, 214 218
+       C 200 224, 182 220, 172 210
+       C 185 222, 204 228, 222 224
+       C 240 220, 254 205, 255 187
+       C 256 168, 244 150, 226 140
+       C 208 130, 182 126, 162 134
+       C 142 142, 130 162, 132 184
+       C 134 205, 146 222, 164 234
+       C 182 246, 206 254, 230 256
+       C 260 258, 292 248, 312 228
+       C 334 206, 344 174, 332 144
+       C 320 112, 292 86,  248 72
+       C 202 56,  142 64,  108 96 Z"
+    fill="url(#grad-swirl-upper)"
+    filter="url(#shadow)"
+  />
+
+  <!-- ═══════════════════════════════════════════
+       MAIN S-SWIRL — the dominant teal S-curve
+       flowing from upper-center down to lower-left
+  ════════════════════════════════════════════ -->
+  <path
+    d="M 220 72
+       C 255 60,  298 72,  318 100
+       C 340 130, 335 168, 315 192
+       C 295 216, 265 228, 238 232
+       C 210 236, 182 228, 162 212
+       C 140 195, 130 170, 132 148
+       C 134 122, 150 102, 172 95
+       C 155 105, 148 125, 150 145
+       C 152 168, 165 190, 185 204
+       C 206 218, 232 224, 258 220
+       C 285 216, 310 200, 322 178
+       C 336 154, 332 122, 316 100
+       C 298 76,  260 64,  224 72
+
+       M 224 72
+       C 240 120, 250 168, 240 218
+       C 228 270, 200 312, 168 345
+       C 138 375, 102 395, 80 420
+       C 100 405, 128 382, 152 355
+       C 178 325, 200 288, 210 248
+       C 220 208, 218 162, 208 118
+       C 200 84,  212 72,  224 72 Z"
+    fill="url(#grad-swirl-teal)"
+    filter="url(#shadow)"
+  />
+
+  <!-- Inner teal swirl body — the thick S -->
+  <path
+    d="M 230 80
+       C 265 72,  305 88,  322 118
+       C 340 150, 330 188, 308 210
+       C 288 232, 258 240, 232 236
+       C 206 232, 182 218, 170 200
+       C 185 215, 208 225, 232 228
+       C 258 230, 286 220, 305 200
+       C 325 180, 332 150, 320 122
+       C 306 92,  268 76,  232 82
+       C 232 82,  230 82,  230 80 Z"
+    fill="rgba(0,80,60,0.35)"
+  />
+
+  <!-- Lower curl of the S — the downward sweep -->
+  <path
+    d="M 205 245
+       C 195 275, 178 308, 155 335
+       C 132 362, 104 382, 82 398
+       C 72 410, 65 422, 68 438
+       C 80 422, 100 406, 122 388
+       C 148 368, 172 342, 190 314
+       C 208 286, 218 255, 215 228
+       C 212 238, 208 242, 205 245 Z"
+    fill="url(#grad-leaf-lower)"
+    filter="url(#shadow)"
+  />
+
+  <!-- ═══════════════════════════════════════════
+       SUN ORB — top right
+  ════════════════════════════════════════════ -->
+  <circle
+    cx="295" cy="52" r="30"
+    fill="url(#grad-sun)"
+    filter="url(#shadow)"
+  />
+  <!-- Specular highlight -->
+  <ellipse cx="286" cy="42" rx="10" ry="7"
+    fill="rgba(255,255,255,0.35)"
+    transform="rotate(-20, 286, 42)"
+  />
+
+  <!-- Small scatter dots (original has a few orange dots) -->
+  <circle cx="340" cy="38" r="5"  fill="#F5A800" opacity="0.8"/>
+  <circle cx="356" cy="52" r="3.5" fill="#F5C800" opacity="0.7"/>
+  <circle cx="328" cy="22" r="3"  fill="#D97000" opacity="0.6"/>
+
+  <!-- ═══════════════════════════════════════════
+       LARGE GEAR — right side, center
+  ════════════════════════════════════════════ -->
+  <g transform="translate(358, 240)" filter="url(#shadow)">
+    <!-- Gear teeth -->
+    <path d="
+      M  0,-52 L  7,-46  7,-36  0,-30
+      L  0,-52 Z
+      M 30,-44 L 34,-36 28,-28 20,-28
+      L 30,-44 Z
+      M 50,-20 L 50,-12 42, -6 34,-10
+      L 50,-20 Z
+      M 52,  8 L 46, 16 36, 14 34,  6
+      L 52,  8 Z
+      M 36, 36 L 28, 42 20, 36 22, 28
+      L 36, 36 Z
+      M  8, 52 L  0, 52 -6, 44 -2, 36
+      L  8, 52 Z
+      M-22, 44 L-30, 38 -28, 28 -20, 26
+      L-22, 44 Z
+      M-50, 20 L-52,  8 -44,  4 -38, 10
+      L-50, 20 Z
+      M-52,-12 L-46,-22 -38,-20 -36,-10
+      L-52,-12 Z
+      M-36,-38 L-28,-44 -20,-38 -22,-28
+      L-36,-38 Z
+      M-10,-52 L  0,-52 2, -44 -4,-38
+      L-10,-52 Z
+    " fill="url(#grad-gear-large)"/>
+    <!-- Gear ring -->
+    <circle cx="0" cy="0" r="30" fill="none" stroke="url(#grad-gear-large)" stroke-width="18"/>
+    <!-- Hub -->
+    <circle cx="0" cy="0" r="12" fill="url(#grad-gear-large)"/>
+    <!-- Hub hole -->
+    <circle cx="0" cy="0" r="6"  fill="rgba(0,0,0,0.25)"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       SMALL GEAR TOP — upper right of large gear
+  ════════════════════════════════════════════ -->
+  <g transform="translate(400, 170) rotate(15)" filter="url(#shadow)">
+    <path d="
+      M  0,-32 L  5,-26  5,-20  0,-16
+      L  0,-32 Z
+      M 18,-26 L 22,-18 16,-12 10,-14
+      L 18,-26 Z
+      M 30, -5 L 30,  3 22,  6 18,  2
+      L 30, -5 Z
+      M 22, 22 L 16, 26  8, 22 10, 14
+      L 22, 22 Z
+      M  4, 32 L -4, 32 -6, 24  0, 20
+      L  4, 32 Z
+      M-18, 26 L-22, 18 -14, 12 -8, 16
+      L-18, 26 Z
+      M-30,  4 L-30, -4 -22, -6 -18,  0
+      L-30,  4 Z
+      M-20,-22 L-14,-28 -6,-22 -8,-14
+      L-20,-22 Z
+    " fill="url(#grad-gear-gold)"/>
+    <circle cx="0" cy="0" r="18" fill="none" stroke="url(#grad-gear-gold)" stroke-width="11"/>
+    <circle cx="0" cy="0" r="7"  fill="url(#grad-gear-gold)"/>
+    <circle cx="0" cy="0" r="3.5" fill="rgba(0,0,0,0.22)"/>
+  </g>
+
+  <!-- ═══════════════════════════════════════════
+       SMALL GEAR BOTTOM — lower right
+  ════════════════════════════════════════════ -->
+  <g transform="translate(406, 340) rotate(-10)" filter="url(#shadow)">
+    <path d="
+      M  0,-28 L  4,-22  4,-18  0,-14
+      L  0,-28 Z
+      M 16,-22 L 19,-15 13,-10  8,-12
+      L 16,-22 Z
+      M 26, -4 L 26,  3 19,  5 16,  1
+      L 26, -4 Z
+      M 18, 20 L 13, 24  6, 20  8, 12
+      L 18, 20 Z
+      M  3, 28 L -3, 28 -5, 21  0, 18
+      L  3, 28 Z
+      M-16, 22 L-19, 15 -12, 10 -6, 14
+      L-16, 22 Z
+      M-26,  3 L-26, -4 -19, -6 -16,  0
+      L-26,  3 Z
+      M-18,-20 L-12,-25 -5,-20 -7,-12
+      L-18,-20 Z
+    " fill="url(#grad-gear-olive)"/>
+    <circle cx="0" cy="0" r="16" fill="none" stroke="url(#grad-gear-olive)" stroke-width="10"/>
+    <circle cx="0" cy="0" r="6"  fill="url(#grad-gear-olive)"/>
+    <circle cx="0" cy="0" r="3"  fill="rgba(0,0,0,0.22)"/>
+  </g>
+
+</svg>
