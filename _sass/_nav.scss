@@ -11,8 +11,8 @@
   padding: 0;
   transition: background var(--transition-slow), backdrop-filter var(--transition-slow), box-shadow var(--transition-slow);
 
-  &.scrolled {
-    background: rgba($ink, 0.92);
+  &.scrolled {  
+    background: rgba(var(--color-bg-raw), 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 1px 0 var(--color-border);

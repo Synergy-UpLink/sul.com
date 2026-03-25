@@ -20,10 +20,10 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(42, 184, 160, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(42, 184, 160, 0.04) 1px, transparent 1px);
+        linear-gradient(var(--color-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
       background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 75%);
+      mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6) 0%, transparent 75%);
     }
 
     .radial-glow {
@@ -47,20 +47,24 @@
     .floating-orb {
       position: absolute;
       border-radius: 50%;
-      background: var(--color-primary);
+      background: yellow;
       filter: blur(80px);
       opacity: 0.04;
       animation: float 12s ease-in-out infinite;
 
       &:nth-child(1) {
-        width: 500px; height: 500px;
-        top: 10%; right: 5%;
+        width: 500px;
+        height: 500px;
+        top: 10%;
+        right: 5%;
         animation-delay: 0s;
       }
 
       &:nth-child(2) {
-        width: 350px; height: 350px;
-        bottom: 15%; left: 8%;
+        width: 350px;
+        height: 350px;
+        bottom: 15%;
+        left: 8%;
         background: $burgundy;
         animation-delay: -5s;
       }
@@ -208,7 +212,9 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--color-border), var(--color-border), transparent);
 
-    @media (max-width: $bp-lg) { display: none; }
+    @media (max-width: $bp-lg) {
+      display: none;
+    }
   }
 }
 
@@ -251,8 +257,13 @@
   grid-template-columns: repeat(3, 1fr);
   gap: $space-lg;
 
-  @media (max-width: $bp-lg) { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: $bp-sm) { grid-template-columns: 1fr; }
+  @media (max-width: $bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-sm) {
+    grid-template-columns: 1fr;
+  }
 }
 
 // CTA Section
@@ -268,13 +279,17 @@
   &::before {
     content: '';
     position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
     background: radial-gradient(ellipse at center, rgba(42, 184, 160, 0.06) 0%, transparent 60%);
     pointer-events: none;
   }
 
-  h2 { margin-bottom: $space-md; }
+  h2 {
+    margin-bottom: $space-md;
+  }
 
   p {
     max-width: 520px;
@@ -296,6 +311,7 @@
     opacity: 0;
     transform: translateY(24px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -303,20 +319,47 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-30px) scale(1.05); }
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-30px) scale(1.05);
+  }
 }
 
 @keyframes scrollLine {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
 }
 
 // Scroll reveal utility

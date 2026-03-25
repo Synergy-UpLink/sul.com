@@ -2,6 +2,19 @@
 // Synergy UpLink — main.js
 // ============================================================
 
+// ——— Theme: runs before DOM ready to prevent flash
+(function () {
+  const stored = localStorage.getItem('su-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  // Apply stored preference, or fall back to browser signal
+  if (stored) {
+    document.documentElement.setAttribute('data-theme', stored);
+  }
+  // If no stored pref, data-theme stays unset and CSS handles it via
+  // prefers-color-scheme media query — no attribute needed
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ——— Sticky nav scroll behaviour
@@ -12,6 +25,36 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  }
+
+  // ——— Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      // Determine what the browser default actually is right now
+      const browserDefault = prefersDark ? 'dark' : 'light';
+
+      let next;
+      if (!current) {
+        // No override yet — flip away from browser default
+        next = browserDefault === 'dark' ? 'light' : 'dark';
+      } else {
+        next = current === 'dark' ? 'light' : 'dark';
+      }
+
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('su-theme', next);
+
+      // If they've toggled back to what the browser already sends,
+      // remove the override so it tracks system changes again
+      if (next === browserDefault) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.removeItem('su-theme');
+      }
+    });
   }
 
   // ——— Mobile menu toggle
