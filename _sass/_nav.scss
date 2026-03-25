@@ -31,7 +31,9 @@
     text-decoration: none;
     line-height: 1;
 
-    &:hover { text-decoration: none; }
+    &:hover {
+      text-decoration: none;
+    }
 
     .logo-primary {
       font-family: var(--font-display);
@@ -68,7 +70,10 @@
       transition: color var(--transition);
       letter-spacing: 0.02em;
 
-      &:hover, &.active { color: var(--color-text); }
+      &:hover,
+      &.active {
+        color: var(--color-text);
+      }
     }
   }
 
@@ -101,9 +106,86 @@
     }
 
     &.open {
-      span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
-      span:nth-child(2) { opacity: 0; }
-      span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(4.5px, 4.5px);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(4.5px, -4.5px);
+      }
+    }
+  }
+}
+
+// Theme toggle button
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-pill;
+  border: 1px solid var(--color-border);
+  background: var(--color-glow);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  flex-shrink: 0;
+  position: relative;
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(var(--color-bg-raw), 0.5);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    transition: opacity 0.2s, transform 0.3s $ease-out;
+  }
+
+  // Dark mode active: show sun icon
+  .theme-toggle__sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .theme-toggle__moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+}
+
+// Light mode via explicit toggle
+[data-theme="light"] .theme-toggle {
+  .theme-toggle__sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+
+  .theme-toggle__moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+// Light mode via browser preference (no JS override)
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .theme-toggle {
+    .theme-toggle__sun {
+      opacity: 0;
+      transform: rotate(90deg) scale(0.6);
+    }
+
+    .theme-toggle__moon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
     }
   }
 }
@@ -141,7 +223,9 @@
     text-decoration: none;
     transition: color var(--transition);
 
-    &:hover { color: var(--color-text); }
+    &:hover {
+      color: var(--color-text);
+    }
   }
 }
 
@@ -216,7 +300,9 @@
       text-decoration: none;
       transition: color var(--transition);
 
-      &:hover { color: var(--color-text); }
+      &:hover {
+        color: var(--color-text);
+      }
     }
   }
 
@@ -246,7 +332,9 @@
       text-decoration: none;
       transition: color var(--transition);
 
-      &:hover { color: var(--color-primary); }
+      &:hover {
+        color: var(--color-primary);
+      }
     }
   }
 }
