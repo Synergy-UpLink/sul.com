@@ -1,0 +1,51 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+
+      <div class="site-footer__brand">
+        <span class="logo-primary">Synergy UpLink</span>
+        <span class="footer-tagline">Technology for Everyone</span>
+        <p>We help small businesses, nonprofits, and mission-driven organizations make the most of technology — without the overwhelm.</p>
+      </div>
+
+      <div class="site-footer__col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="{{ '/services/#digital-infrastructure' | relative_url }}">Digital Infrastructure</a></li>
+          <li><a href="{{ '/services/#communication' | relative_url }}">Communication & Content</a></li>
+          <li><a href="{{ '/services/#operational' | relative_url }}">Operational Technology</a></li>
+          <li><a href="{{ '/services/#strategic' | relative_url }}">Strategic Consulting</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+          <li><a href="{{ '/work/' | relative_url }}">Case Studies</a></li>
+          <li><a href="{{ '/blog/' | relative_url }}">Resources</a></li>
+          <li><a href="{{ '/faq/' | relative_url }}">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="{{ '/contact/' | relative_url }}">Start a Conversation</a></li>
+          <li><a href="{{ '/pricing/' | relative_url }}">Engagement Models</a></li>
+          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="site-footer__bottom">
+      <span>© {{ 'now' | date: "%Y" }} Synergy UpLink. All rights reserved.</span>
+      <div class="site-footer__social">
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">RSS</a>
+      </div>
+    </div>
+  </div>
+</footer>

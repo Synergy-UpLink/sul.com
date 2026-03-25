@@ -1,0 +1,132 @@
+---
+layout: default
+title: Our Work
+description: Case studies from Synergy UpLink — technology consulting for nonprofits, small businesses, and mission-driven organizations.
+permalink: /work/
+---
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Case Studies</div>
+    <h1>Work that speaks<br>for itself</h1>
+    <p class="lead">Every project is different. These case studies show how we approach real problems — and the results that follow when technology actually fits the organization using it.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="grid-2">
+
+      {% assign case_studies = site.case_studies %}
+      {% for cs in case_studies %}
+      <a href="{{ cs.url | relative_url }}" class="work-card work-card--large reveal">
+        <div class="work-card__thumbnail" style="height:280px">
+          <div class="work-card__pattern"></div>
+          <div class="work-card__icon" style="width:80px;height:80px;font-size:2.2rem">{{ cs.icon | default: "◈" }}</div>
+          <div class="work-card__overlay"></div>
+        </div>
+        <div class="work-card__body" style="padding:2rem">
+          <div class="work-card__tags">
+            {% for tag in cs.tags %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          <h3 style="font-size:1.4rem;margin-bottom:0.75rem">{{ cs.title }}</h3>
+          <p>{{ cs.summary }}</p>
+          {% if cs.outcome %}
+          <div style="margin-top:1.25rem;padding:0.75rem 1rem;background:rgba(42,184,160,0.06);border:1px solid rgba(42,184,160,0.18);border-radius:6px;font-size:0.85rem;color:var(--color-text)">
+            <strong style="color:var(--color-primary);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-family:var(--font-body);display:block;margin-bottom:3px">Outcome</strong>
+            {{ cs.outcome }}
+          </div>
+          {% endif %}
+        </div>
+      </a>
+      {% else %}
+
+      <!-- Fallback static case studies if collection is empty -->
+      <a href="{{ '/work/community-land-trust/' | relative_url }}" class="work-card work-card--large reveal">
+        <div class="work-card__thumbnail" style="height:280px">
+          <div class="work-card__pattern"></div>
+          <div class="work-card__icon" style="width:80px;height:80px;font-size:2rem">🏘</div>
+        </div>
+        <div class="work-card__body" style="padding:2rem">
+          <div class="work-card__tags"><span class="tag">Nonprofit</span><span class="tag">Infrastructure</span><span class="tag">Training</span></div>
+          <h3 style="font-size:1.4rem">Digital Overhaul for a Community Land Trust</h3>
+          <p>A decade-old CLT was running on a patchwork of outdated tools, manual spreadsheets, and institutional memory. We rebuilt their digital foundation from the ground up.</p>
+          <div style="margin-top:1.25rem;padding:0.75rem 1rem;background:rgba(42,184,160,0.06);border:1px solid rgba(42,184,160,0.18);border-radius:6px;font-size:0.85rem;color:var(--color-text)">
+            <strong style="color:var(--color-primary);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:3px">Outcome</strong>
+            60% reduction in administrative overhead; staff reported feeling confident using their tools for the first time in years.
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ '/work/mutual-aid-podcast/' | relative_url }}" class="work-card work-card--large reveal">
+        <div class="work-card__thumbnail" style="height:280px;background:linear-gradient(135deg,#2c1a2e,#0a1a1a)">
+          <div class="work-card__pattern"></div>
+          <div class="work-card__icon" style="width:80px;height:80px;font-size:2rem;color:#a83458">🎙</div>
+        </div>
+        <div class="work-card__body" style="padding:2rem">
+          <div class="work-card__tags"><span class="tag">Mutual Aid</span><span class="tag">Content</span><span class="tag">Strategy</span></div>
+          <h3 style="font-size:1.4rem">Podcast Launch for a Regional Mutual Aid Network</h3>
+          <p>A grassroots network wanted to amplify member stories and build a broader community. They had zero prior media experience and a shoestring budget.</p>
+          <div style="margin-top:1.25rem;padding:0.75rem 1rem;background:rgba(42,184,160,0.06);border:1px solid rgba(42,184,160,0.18);border-radius:6px;font-size:0.85rem;color:var(--color-text)">
+            <strong style="color:var(--color-primary);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:3px">Outcome</strong>
+            Launched with 8 episodes in 6 weeks; 400+ subscribers in the first month, zero ongoing vendor costs.
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ '/work/indie-retailer/' | relative_url }}" class="work-card work-card--large reveal">
+        <div class="work-card__thumbnail" style="height:280px;background:linear-gradient(135deg,#1a2c1e,#0a1a1a)">
+          <div class="work-card__pattern"></div>
+          <div class="work-card__icon" style="width:80px;height:80px;font-size:2rem;color:#c9972b">🛒</div>
+        </div>
+        <div class="work-card__body" style="padding:2rem">
+          <div class="work-card__tags"><span class="tag">Small Business</span><span class="tag">E-Commerce</span><span class="tag">Integration</span></div>
+          <h3 style="font-size:1.4rem">Unified Commerce Stack for an Independent Retailer</h3>
+          <p>An indie shop owner was managing inventory in one system, selling online in another, and doing email marketing in a third — with no connection between them.</p>
+          <div style="margin-top:1.25rem;padding:0.75rem 1rem;background:rgba(42,184,160,0.06);border:1px solid rgba(42,184,160,0.18);border-radius:6px;font-size:0.85rem;color:var(--color-text)">
+            <strong style="color:var(--color-primary);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:3px">Outcome</strong>
+            Saved 10+ hours/week of manual data entry; online sales up 35% in the first quarter after relaunch.
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ '/work/healthcare-nonprofit/' | relative_url }}" class="work-card work-card--large reveal">
+        <div class="work-card__thumbnail" style="height:280px;background:linear-gradient(135deg,#1a1a2e,#0a1a1a)">
+          <div class="work-card__pattern"></div>
+          <div class="work-card__icon" style="width:80px;height:80px;font-size:2rem;color:#3dd9be">🩺</div>
+        </div>
+        <div class="work-card__body" style="padding:2rem">
+          <div class="work-card__tags"><span class="tag">Healthcare</span><span class="tag">Nonprofit</span><span class="tag">Data</span></div>
+          <h3 style="font-size:1.4rem">Patient Data & Reporting Overhaul for a Community Clinic</h3>
+          <p>A community health organization needed better reporting for funders and cleaner data for program staff — without replacing their existing EHR.</p>
+          <div style="margin-top:1.25rem;padding:0.75rem 1rem;background:rgba(42,184,160,0.06);border:1px solid rgba(42,184,160,0.18);border-radius:6px;font-size:0.85rem;color:var(--color-text)">
+            <strong style="color:var(--color-primary);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:3px">Outcome</strong>
+            Quarterly reporting time cut from 3 days to 4 hours; new dashboard used in every board meeting.
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ '/work/cooperative-launch/' | relative_url }}" class="work-card work-card--large reveal">
+        <div class="work-card__thumbnail" style="height:280px;background:linear-gradient(135deg,#2c1a1a,#0a1a1a)">
+          <div class="work-card__pattern"></div>
+          <div class="work-card__icon" style="width:80px;height:80px;font-size:2rem;color:#e6b84a">🤝</div>
+        </div>
+        <div class="work-card__body" style="padding:2rem">
+          <div class="work-card__tags"><span class="tag">Cooperative</span><span class="tag">Launch</span><span class="tag">Full-Stack</span></div>
+          <h3 style="font-size:1.4rem">Full Tech Stack for a Worker Cooperative Launch</h3>
+          <p>A new worker co-op needed everything from scratch: website, email, point-of-sale, payroll integration, and member communications — in eight weeks.</p>
+          <div style="margin-top:1.25rem;padding:0.75rem 1rem;background:rgba(42,184,160,0.06);border:1px solid rgba(42,184,160,0.18);border-radius:6px;font-size:0.85rem;color:var(--color-text)">
+            <strong style="color:var(--color-primary);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:3px">Outcome</strong>
+            Launched on time and on budget; co-op opened doors with a professional, fully operational digital presence.
+          </div>
+        </div>
+      </a>
+
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include cta.html %}

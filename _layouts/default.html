@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }} — {{ site.tagline }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
+  <link rel="canonical" href="{{ page.url | prepend: site.url }}" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+
+  <!-- SEO -->
+  {% seo %}
+</head>
+<body>
+
+  <!-- Navigation -->
+  {% include nav.html %}
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu" aria-label="Mobile navigation">
+    {% for link in site.nav_links %}
+      <a href="{{ link.url | relative_url }}">{{ link.title }}</a>
+    {% endfor %}
+    <a href="{{ '/contact/' | relative_url }}" class="btn btn--primary" style="margin-top:1rem">Start a Conversation</a>
+  </nav>
+
+  <!-- Main content -->
+  <main id="main">
+    {{ content }}
+  </main>
+
+  <!-- Footer -->
+  {% include footer.html %}
+
+  <!-- Scripts -->
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+---
+layout: default
+---
+
+<article class="post-page">
+  <header class="page-hero">
+    <div class="container">
+      <div class="section-label">{{ page.category | default: "Resources" }}</div>
+      <h1>{{ page.title }}</h1>
+      <div class="post-page__meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+        {% if page.read_time %}<span>· {{ page.read_time }} min read</span>{% endif %}
+      </div>
+      {% if page.excerpt %}<p class="lead">{{ page.excerpt }}</p>{% endif %}
+    </div>
+  </header>
+
+  <div class="post-page__body">
+    <div class="container">
+      <div class="post-page__content">
+        {{ content }}
+      </div>
+
+      <div class="post-page__footer">
+        <a href="{{ '/blog/' | relative_url }}" class="btn btn--ghost">
+          ← Back to Resources
+        </a>
+      </div>
+    </div>
+  </div>
+</article>
+
+<style>
+.post-page__meta {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.post-page__body { padding: 3rem 0 6rem; }
+.post-page__content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.post-page__content h2,
+.post-page__content h3 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.post-page__content p { color: var(--color-text-muted); margin-bottom: 1.25rem; }
+.post-page__content ul,
+.post-page__content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  color: var(--color-text-muted);
+}
+.post-page__content ul { list-style: disc; }
+.post-page__content ol { list-style: decimal; }
+.post-page__content li { margin-bottom: 0.5rem; }
+.post-page__footer { max-width: 720px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid var(--color-border); }
+</style>

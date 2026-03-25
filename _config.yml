@@ -1,0 +1,68 @@
+title: Synergy UpLink
+tagline: Technology that works for everyone.
+description: >
+  Synergy UpLink is a technology consulting firm serving small businesses,
+  nonprofits, and mission-driven organizations. We remove technical barriers
+  so you can focus on your work.
+baseurl: ""
+url: "https://synergyuplink.com"
+email: hello@synergyuplink.com
+
+author:
+  name: Synergy UpLink
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+
+# Sass
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  case_studies:
+    output: true
+    permalink: /work/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: case_studies
+    values:
+      layout: case_study
+
+# Exclude
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Navigation
+nav_links:
+  - title: Services
+    url: /services/
+  - title: Work
+    url: /work/
+  - title: About
+    url: /about/
+  - title: Blog
+    url: /blog/
+  - title: FAQ
+    url: /faq/
+  - title: Contact
+    url: /contact/
