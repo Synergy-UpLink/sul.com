@@ -12,7 +12,7 @@
   transition: background var(--transition-slow), backdrop-filter var(--transition-slow), box-shadow var(--transition-slow);
 
   &.scrolled {
-    background: rgba($ink, 0.92);
+    background: rgba(var(--color-bg-raw), 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 1px 0 var(--color-border);
@@ -23,31 +23,78 @@
     align-items: center;
     justify-content: space-between;
     height: 72px;
+    transition: height var(--transition-slow);
+  }
+
+  // Taller bar before scrolling
+  &:not(.scrolled) &__inner {
+    height: 96px;
   }
 
   &__logo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
     text-decoration: none;
     line-height: 1;
 
-    &:hover { text-decoration: none; }
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__logo-img {
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+    // Smooth size transition
+    width: 56px;
+    height: 56px;
+    transition: width var(--transition-slow), height var(--transition-slow);
+  }
+
+  &__logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .logo-primary {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+    font-size: 1.9rem;
+    transition: font-size var(--transition-slow);
+  }
+
+  .logo-accent {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    opacity: 1;
+    max-height: 20px;
+    overflow: hidden;
+    transition: opacity var(--transition-slow), max-height var(--transition-slow);
+  }
+
+  // Compact state after scrolling
+  .site-nav.scrolled {
+    .site-nav__logo-img {
+      width: 36px;
+      height: 36px;
+    }
 
     .logo-primary {
-      font-family: var(--font-display);
       font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--color-text);
-      letter-spacing: -0.01em;
     }
 
     .logo-accent {
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--color-primary);
-      margin-top: 1px;
+      opacity: 0;
+      max-height: 0;
     }
   }
 
@@ -68,7 +115,10 @@
       transition: color var(--transition);
       letter-spacing: 0.02em;
 
-      &:hover, &.active { color: var(--color-text); }
+      &:hover,
+      &.active {
+        color: var(--color-text);
+      }
     }
   }
 
@@ -78,7 +128,6 @@
     }
   }
 
-  // Mobile hamburger
   &__toggle {
     display: none;
     flex-direction: column;
@@ -101,9 +150,86 @@
     }
 
     &.open {
-      span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
-      span:nth-child(2) { opacity: 0; }
-      span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(4.5px, 4.5px);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(4.5px, -4.5px);
+      }
+    }
+  }
+}
+
+// Theme toggle button
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-pill;
+  border: 1px solid var(--color-border);
+  background: var(--color-glow);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  flex-shrink: 0;
+  position: relative;
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: rgba(var(--color-bg-raw), 0.5);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    transition: opacity 0.2s, transform 0.3s $ease-out;
+  }
+
+  // Dark mode active: show sun icon
+  .theme-toggle__sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .theme-toggle__moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+}
+
+// Light mode via explicit toggle
+[data-theme="light"] .theme-toggle {
+  .theme-toggle__sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+
+  .theme-toggle__moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+// Light mode via browser preference (no JS override)
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .theme-toggle {
+    .theme-toggle__sun {
+      opacity: 0;
+      transform: rotate(90deg) scale(0.6);
+    }
+
+    .theme-toggle__moon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
     }
   }
 }
@@ -141,7 +267,9 @@
     text-decoration: none;
     transition: color var(--transition);
 
-    &:hover { color: var(--color-text); }
+    &:hover {
+      color: var(--color-text);
+    }
   }
 }
 
@@ -216,7 +344,9 @@
       text-decoration: none;
       transition: color var(--transition);
 
-      &:hover { color: var(--color-text); }
+      &:hover {
+        color: var(--color-text);
+      }
     }
   }
 
@@ -246,7 +376,9 @@
       text-decoration: none;
       transition: color var(--transition);
 
-      &:hover { color: var(--color-primary); }
+      &:hover {
+        color: var(--color-primary);
+      }
     }
   }
 }

@@ -10,7 +10,7 @@
     "4000": { "label": "Jekyll Site" },
     "35729": { "label": "LiveReload" }
   },
-  "postStartCommand": "bundle exec jekyll serve --host 0.0.0.0 --livereload --force_polling",
+  "postStartCommand": "bundle install && bundle exec jekyll serve --host 0.0.0.0 --livereload --force_polling",
   "customizations": {
     "vscode": {
       "extensions": [

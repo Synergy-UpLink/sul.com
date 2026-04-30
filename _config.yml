@@ -45,6 +45,13 @@ defaults:
     values:
       layout: case_study
 
+# Include & Keep Files
+include:
+  - assets
+
+keep_files:
+  - assets/images
+
 # Exclude
 exclude:
   - Gemfile
