@@ -22,14 +22,6 @@
   <!-- Navigation -->
   {% include nav.html %}
 
-  <!-- Mobile Menu -->
-  <nav class="mobile-menu" aria-label="Mobile navigation">
-    {% for link in site.nav_links %}
-      <a href="{{ link.url | relative_url }}">{{ link.title }}</a>
-    {% endfor %}
-    <a href="{{ '/contact/' | relative_url }}" class="btn btn--primary" style="margin-top:1rem">Start a Conversation</a>
-  </nav>
-
   <!-- Main content -->
   <main id="main">
     {{ content }}
