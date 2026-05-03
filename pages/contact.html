@@ -9,7 +9,7 @@ permalink: /contact/
   <div class="container">
     <div class="section-label">Get in Touch</div>
     <h1>Let's have a real<br>conversation</h1>
-    <p class="lead">No sales pitch. No commitment required. Just 30 minutes to understand your situation and see if we're the right fit to help.</p>
+    <p class="lead">No sales pitch. No commitment required. Just 20 minutes to understand your situation and see if we're the right fit to help.</p>
   </div>
 </section>
 
@@ -51,15 +51,15 @@ permalink: /contact/
             <label>Preferred contact method</label>
             <div class="radio-group">
               <label class="radio-option">
-                <input type="radio" name="contact_preference" value="email" checked />
+                <input type="radio" name="contact_preference" value="email" id="prefer_email" checked />
                 <span>Email</span>
               </label>
               <label class="radio-option">
-                <input type="radio" name="contact_preference" value="call" />
+                <input type="radio" name="contact_preference" value="call" id="prefer_call" />
                 <span>Phone call</span>
               </label>
               <label class="radio-option">
-                <input type="radio" name="contact_preference" value="text" />
+                <input type="radio" name="contact_preference" value="text" id="prefer_text" />
                 <span>Text message</span>
               </label>
             </div>
@@ -145,7 +145,7 @@ permalink: /contact/
               <span class="step-num">2</span>
               <div>
                 <strong>We schedule a discovery call</strong>
-                <p>30 minutes, free of charge, no commitment. We ask questions; you ask questions.</p>
+                <p>20 minutes, free of charge, no commitment. We ask questions; you ask questions.</p>
               </div>
             </li>
             <li>
@@ -355,7 +355,7 @@ permalink: /contact/
     status.textContent = '';
 
     try {
-      const res = await fetch('http://localhost:8787/', {
+      const res = await fetch('https://contact-worker.sul-admin.workers.dev/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -472,20 +472,38 @@ permalink: /contact/
 .radio-option {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   cursor: pointer;
   font-size: 0.9rem;
   color: var(--color-text-muted);
   transition: color 0.2s;
 }
-.radio-option input[type="radio"] {
-  accent-color: var(--color-primary);
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-  margin: 0;
-}
 .radio-option:has(input:checked) {
   color: var(--color-text);
+}
+/* Override .form-group input — keep the square, fix checked state */
+.radio-option input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  flex-shrink: 0;
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-bg-soft);
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.radio-option input[type="radio"]:checked {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  box-shadow: inset 0 0 0 3px var(--color-bg-soft);
+}
+.radio-option input[type="radio"]:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 </style>
