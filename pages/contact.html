@@ -21,9 +21,9 @@ permalink: /contact/
         <h2>Send us a message</h2>
         <p>Tell us a bit about your organization and what you're working through. We'll respond within one business day.</p>
 
-        <!-- Replace action="#" with your Formspree endpoint or other form handler -->
-        <form id="contact-form" action="#" method="POST" style="margin-top:2rem">
-          <input type="hidden" name="_subject" value="New inquiry from Synergy UpLink website" />
+        <form id="contact-form" style="margin-top:2rem">
+          <!-- Honeypot field — hidden from real users, catches bots -->
+          <input type="text" name="company" id="company" style="display:none" tabindex="-1" autocomplete="off" />
 
           <div class="grid-2" style="gap:1rem">
             <div class="form-group">
@@ -86,7 +86,7 @@ permalink: /contact/
 
           <p id="form-status" style="margin-bottom:1rem;font-size:0.9rem"></p>
 
-          <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">
+          <button type="submit" id="form-submit" class="btn btn--primary" style="width:100%;justify-content:center">
             Send Message
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </button>
@@ -143,6 +143,65 @@ permalink: /contact/
     </div>
   </div>
 </section>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const status = document.getElementById('form-status');
+    const submitBtn = document.getElementById('form-submit');
+
+    // Read fields
+    const name    = form.name.value.trim();
+    const email   = form.email.value.trim();
+    const message = form.message.value.trim();
+    const company = form.company.value; // honeypot
+
+    // Client-side guard (worker also checks, this is just UX)
+    if (!email || !message) {
+      status.style.color = 'var(--color-error, #e05252)';
+      status.textContent = 'Please fill in your email and message.';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    status.textContent = '';
+
+    try {
+      const res = await fetch('https://contact-worker.sul-admin.workers.dev/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          siteId:  'sul-main',
+          name:    name,
+          email:   email,
+          message: message,
+          company: company // honeypot — will be empty for real users
+        })
+      });
+
+      if (res.ok) {
+        status.style.color = 'var(--color-primary, #2ab8a0)';
+        status.textContent = '✓ Message sent! We\'ll be in touch within one business day.';
+        form.reset();
+      } else if (res.status === 429) {
+        status.style.color = 'var(--color-error, #e05252)';
+        status.textContent = 'Too many submissions — please wait a minute and try again.';
+      } else {
+        throw new Error('Server error ' + res.status);
+      }
+    } catch (err) {
+      status.style.color = 'var(--color-error, #e05252)';
+      status.textContent = 'Something went wrong. Please email us directly if the problem persists.';
+      console.error('Contact form error:', err);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Send Message <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+    }
+  });
+</script>
 
 <style>
 .contact-layout {
