@@ -207,70 +207,115 @@ permalink: /contact/
     return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
+  // ——— Theme palettes — tokens pulled directly from _variables.scss
+  const THEMES = {
+    dark: {
+      bg:          '#0a1a1a',   // $ink
+      bgSoft:      '#0f2424',   // $ink-soft ish
+      header:      '#0d3d3d',   // $teal-deep
+      surface:     '#0a1a1a',   // $ink (inset blocks)
+      border:      'rgba(42,184,160,0.2)',
+      borderFaint: 'rgba(42,184,160,0.1)',
+      primary:     '#2ab8a0',   // $teal-bright
+      primaryBg:   '#1a3d2b',   // dark badge bg
+      text:        '#f0f7f7',   // $pearl
+      textMuted:   '#8fb3b3',   // $smoke
+      textBody:    '#c5dada',   // $mist
+      messageText: '#e8f2f2',
+      footerText:  '#2e5c5c',   // $teal-mid darkened
+    },
+    light: {
+      bg:          '#f4f9f9',   // --color-bg light
+      bgSoft:      '#e8f2f2',   // --color-bg-soft light
+      header:      '#cde8e8',   // --color-surface light
+      surface:     '#e8f2f2',
+      border:      'rgba(26,107,107,0.2)',
+      borderFaint: 'rgba(26,107,107,0.12)',
+      primary:     '#1a6b6b',   // $teal-mid (light mode primary)
+      primaryBg:   '#d4eeee',   // light badge bg
+      text:        '#0d2626',   // --color-text light
+      textMuted:   '#2e5c5c',   // --color-text-muted light
+      textBody:    '#2e5c5c',
+      messageText: '#0d2626',
+      footerText:  '#2e5c5c',
+    },
+  };
+
+  // Detect which theme the user is actually seeing right now
+  function getActiveTheme() {
+    const stored = localStorage.getItem('su-theme');
+    if (stored === 'light') return 'light';
+    if (stored === 'dark')  return 'dark';
+    // No override — follow the browser
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
   function buildEmailHtml(f) {
+    const t = THEMES[getActiveTheme()];
     const contactPrefLabel = label(f.contactPref, CONTACT_PREF_LABELS);
-    let contactLine = `<a href="mailto:${esc(f.email)}" style="color:#2ab8a0">${esc(f.email)}</a>`;
+
+    let contactLine = `<a href="mailto:${esc(f.email)}" style="color:${t.primary}">${esc(f.email)}</a>`;
     if (f.phone) {
       const prefNote = f.contactPref !== 'email'
-        ? ` <span style="background:#1a3d2b;color:#2ab8a0;font-size:11px;padding:2px 7px;border-radius:20px;vertical-align:middle">prefers ${contactPrefLabel.toLowerCase()}</span>`
+        ? ` <span style="background:${t.primaryBg};color:${t.primary};font-size:11px;padding:2px 7px;border-radius:20px;vertical-align:middle">prefers ${contactPrefLabel.toLowerCase()}</span>`
         : '';
       contactLine += `<br>${esc(f.phone)}${prefNote}`;
     } else {
-      contactLine += ` <span style="background:#1a3d2b;color:#2ab8a0;font-size:11px;padding:2px 7px;border-radius:20px;vertical-align:middle">prefers email</span>`;
+      contactLine += ` <span style="background:${t.primaryBg};color:${t.primary};font-size:11px;padding:2px 7px;border-radius:20px;vertical-align:middle">prefers email</span>`;
     }
 
     return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/></head>
-<body style="margin:0;padding:0;background:#0a1a1a;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#c5dada">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#0a1a1a;padding:32px 16px">
+<body style="margin:0;padding:0;background:${t.bg};font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:${t.textBody}">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:${t.bg};padding:32px 16px">
   <tr><td align="center">
     <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%">
-      <tr><td style="background:#0d3d3d;border-radius:12px 12px 0 0;padding:24px 32px;border-bottom:1px solid rgba(42,184,160,0.2)">
-        <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#2ab8a0">Synergy UpLink</p>
-        <h1 style="margin:6px 0 0;font-size:20px;font-weight:600;color:#f0f7f7;letter-spacing:-0.01em">New Contact Form Submission</h1>
+      <tr><td style="background:${t.header};border-radius:12px 12px 0 0;padding:24px 32px;border-bottom:1px solid ${t.border}">
+        <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:${t.primary}">Synergy UpLink</p>
+        <h1 style="margin:6px 0 0;font-size:20px;font-weight:600;color:${t.text};letter-spacing:-0.01em">New Contact Form Submission</h1>
       </td></tr>
-      <tr><td style="background:#0f2424;padding:32px;border-radius:0 0 12px 12px">
+      <tr><td style="background:${t.bgSoft};padding:32px;border-radius:0 0 12px 12px">
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px">
           <tr><td>
-            <p style="margin:0 0 4px;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#8fb3b3">From</p>
-            <p style="margin:0;font-size:20px;font-weight:600;color:#f0f7f7">${esc(f.name) || '—'}</p>
-            ${f.org ? `<p style="margin:4px 0 0;font-size:14px;color:#8fb3b3">${esc(f.org)}${f.orgType ? ` &middot; ${label(f.orgType, ORG_TYPE_LABELS)}` : ''}</p>` : ''}
+            <p style="margin:0 0 4px;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${t.textMuted}">From</p>
+            <p style="margin:0;font-size:20px;font-weight:600;color:${t.text}">${esc(f.name) || '—'}</p>
+            ${f.org ? `<p style="margin:4px 0 0;font-size:14px;color:${t.textMuted}">${esc(f.org)}${f.orgType ? ` &middot; ${label(f.orgType, ORG_TYPE_LABELS)}` : ''}</p>` : ''}
           </td></tr>
         </table>
-        <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a1a1a;border-radius:8px;padding:16px 20px;margin-bottom:28px">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:${t.surface};border-radius:8px;padding:16px 20px;margin-bottom:28px">
           <tr><td>
-            <p style="margin:0 0 4px;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#8fb3b3">Contact</p>
-            <p style="margin:0;font-size:14px;line-height:1.7;color:#c5dada">${contactLine}</p>
+            <p style="margin:0 0 4px;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${t.textMuted}">Contact</p>
+            <p style="margin:0;font-size:14px;line-height:1.7;color:${t.textBody}">${contactLine}</p>
           </td></tr>
         </table>
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px">
           <tr><td>
-            <p style="margin:0 0 10px;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#8fb3b3">Message</p>
-            <div style="font-size:15px;line-height:1.75;color:#e8f2f2;white-space:pre-wrap;border-left:3px solid #2ab8a0;padding-left:16px">${esc(f.message)}</div>
+            <p style="margin:0 0 10px;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${t.textMuted}">Message</p>
+            <div style="font-size:15px;line-height:1.75;color:${t.messageText};white-space:pre-wrap;border-left:3px solid ${t.primary};padding-left:16px">${esc(f.message)}</div>
           </td></tr>
         </table>
-        <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a1a1a;border-radius:8px;overflow:hidden">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background:${t.surface};border-radius:8px;overflow:hidden">
           <tr>
-            <td width="50%" style="padding:14px 20px;border-bottom:1px solid rgba(42,184,160,0.1);border-right:1px solid rgba(42,184,160,0.1)">
-              <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#8fb3b3">Area of Interest</p>
-              <p style="margin:0;font-size:13px;color:#c5dada">${label(f.service, SERVICE_LABELS)}</p>
+            <td width="50%" style="padding:14px 20px;border-bottom:1px solid ${t.borderFaint};border-right:1px solid ${t.borderFaint}">
+              <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${t.textMuted}">Area of Interest</p>
+              <p style="margin:0;font-size:13px;color:${t.textBody}">${label(f.service, SERVICE_LABELS)}</p>
             </td>
-            <td width="50%" style="padding:14px 20px;border-bottom:1px solid rgba(42,184,160,0.1)">
-              <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#8fb3b3">Budget Range</p>
-              <p style="margin:0;font-size:13px;color:#c5dada">${label(f.budget, BUDGET_LABELS)}</p>
+            <td width="50%" style="padding:14px 20px;border-bottom:1px solid ${t.borderFaint}">
+              <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${t.textMuted}">Budget Range</p>
+              <p style="margin:0;font-size:13px;color:${t.textBody}">${label(f.budget, BUDGET_LABELS)}</p>
             </td>
           </tr>
           <tr>
             <td colspan="2" style="padding:14px 20px">
-              <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#8fb3b3">Org Type</p>
-              <p style="margin:0;font-size:13px;color:#c5dada">${label(f.orgType, ORG_TYPE_LABELS)}</p>
+              <p style="margin:0 0 3px;font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:${t.textMuted}">Org Type</p>
+              <p style="margin:0;font-size:13px;color:${t.textBody}">${label(f.orgType, ORG_TYPE_LABELS)}</p>
             </td>
           </tr>
         </table>
       </td></tr>
       <tr><td style="padding:20px 0 0;text-align:center">
-        <p style="margin:0;font-size:11px;color:#2e5c5c">Synergy UpLink &middot; contact@synergyuplink.com</p>
+        <p style="margin:0;font-size:11px;color:${t.footerText}">Synergy UpLink &middot; contact@synergyuplink.com</p>
       </td></tr>
     </table>
   </td></tr>
