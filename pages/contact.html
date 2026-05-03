@@ -36,9 +36,33 @@ permalink: /contact/
             </div>
           </div>
 
+          <div class="grid-2" style="gap:1rem">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@yourorg.org" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone <span style="color:var(--color-text-muted);font-weight:300">(optional)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" />
+            </div>
+          </div>
+
           <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="jane@yourorg.org" required />
+            <label>Preferred contact method</label>
+            <div class="radio-group">
+              <label class="radio-option">
+                <input type="radio" name="contact_preference" value="email" checked />
+                <span>Email</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="contact_preference" value="call" />
+                <span>Phone call</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="contact_preference" value="text" />
+                <span>Text message</span>
+              </label>
+            </div>
           </div>
 
           <div class="form-group">
@@ -152,13 +176,17 @@ permalink: /contact/
     const status = document.getElementById('form-status');
     const submitBtn = document.getElementById('form-submit');
 
-    // Read fields
-    const name    = form.name.value.trim();
-    const email   = form.email.value.trim();
-    const message = form.message.value.trim();
-    const company = form.company.value; // honeypot
+    const name       = form.name.value.trim();
+    const email      = form.email.value.trim();
+    const phone      = form.phone.value.trim();
+    const contactPref = form.contact_preference.value;
+    const org        = form.organization.value.trim();
+    const orgType    = form.org_type.value;
+    const service    = form.service_area.value;
+    const message    = form.message.value.trim();
+    const budget     = form.budget.value;
+    const company    = form.company.value; // honeypot
 
-    // Client-side guard (worker also checks, this is just UX)
     if (!email || !message) {
       status.style.color = 'var(--color-error, #e05252)';
       status.textContent = 'Please fill in your email and message.';
@@ -175,10 +203,16 @@ permalink: /contact/
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           siteId:  'sul-main',
-          name:    name,
-          email:   email,
-          message: message,
-          company: company // honeypot — will be empty for real users
+          name,
+          email,
+          phone,
+          contactPref,
+          org,
+          orgType,
+          service,
+          message,
+          budget,
+          company
         })
       });
 
@@ -275,5 +309,32 @@ permalink: /contact/
   font-size: 0.85rem;
   margin: 0;
   line-height: 1.6;
+}
+
+/* Contact preference radio buttons */
+.radio-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.4rem;
+}
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  transition: color 0.2s;
+}
+.radio-option input[type="radio"] {
+  accent-color: var(--color-primary);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  margin: 0;
+}
+.radio-option:has(input:checked) {
+  color: var(--color-text);
 }
 </style>
