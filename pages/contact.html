@@ -9,7 +9,7 @@ permalink: /contact/
   <div class="container">
     <div class="section-label">Get in Touch</div>
     <h1>Let's have a real<br>conversation</h1>
-    <p class="lead">No sales pitch. No commitment required. Just 30 minutes to understand your situation and see if we're the right fit to help.</p>
+    <p class="lead">No sales pitch. No commitment required. Just 20 minutes to understand your situation and see if we're the right fit to help.</p>
   </div>
 </section>
 
@@ -145,7 +145,7 @@ permalink: /contact/
               <span class="step-num">2</span>
               <div>
                 <strong>We schedule a discovery call</strong>
-                <p>30 minutes, free of charge, no commitment. We ask questions; you ask questions.</p>
+                <p>20 minutes, free of charge, no commitment. We ask questions; you ask questions.</p>
               </div>
             </li>
             <li>
@@ -304,7 +304,7 @@ permalink: /contact/
     submitBtn.textContent = 'Sending\u2026';
     statusEl.textContent  = '';
 
-    fetch('https://contact-worker.sul-admin.workers.dev/', {
+    fetch('http://localhost:8787/', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({
