@@ -3,8 +3,9 @@
     <div class="site-nav__inner">
 
       <a href="{{ '/' | relative_url }}" class="site-nav__logo" aria-label="Synergy UpLink — home">
-        <img src="{{ '/assets/images/sul-logo-v1.png' | relative_url }}" alt="Synergy UpLink" class="site-nav__logo-img"
-          width="48" height="48" />
+        <span class="site-nav__logo-img" aria-hidden="true">
+          {% include sul-logo.svg %}
+        </span>
         <div class="site-nav__logo-text">
           <span class="logo-primary">Synergy UpLink</span>
           <span class="logo-accent" aria-hidden="true">Technology Consulting</span>
@@ -53,7 +54,7 @@
 
 <nav class="mobile-menu" aria-label="Mobile navigation">
   {% for link in site.nav_links %}
-    <a href="{{ link.url | relative_url }}">{{ link.title }}</a>
+  <a href="{{ link.url | relative_url }}">{{ link.title }}</a>
   {% endfor %}
   <a href="{{ '/contact/' | relative_url }}" class="btn btn--primary" style="margin-top:1rem">Start a Conversation</a>
 </nav>
