@@ -304,7 +304,7 @@ permalink: /contact/
     submitBtn.textContent = 'Sending\u2026';
     statusEl.textContent  = '';
 
-    fetch('http://localhost:8787/', {
+    fetch('https://contact-worker.sul-admin.workers.dev/', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({
