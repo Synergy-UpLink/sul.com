@@ -2,18 +2,11 @@
 // Synergy UpLink — main.js
 // ============================================================
 
-// ——— Theme: runs before DOM ready to prevent flash
-(function () {
-  const stored = localStorage.getItem('su-theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  // Apply stored preference, or fall back to browser signal
-  if (stored) {
-    document.documentElement.setAttribute('data-theme', stored);
-  }
-  // If no stored pref, data-theme stays unset and CSS handles it via
-  // prefers-color-scheme media query — no attribute needed
-})();
+// ——— Theme: the initial data-theme attribute is set by an inline,
+// non-deferred script in _layouts/default.html <head> so it runs before
+// first paint. This file is loaded with `defer`, so anything here only
+// runs after the DOM is parsed — too late to prevent a flash of the
+// wrong theme. Keep theme *initialization* out of this file.
 
 document.addEventListener('DOMContentLoaded', () => {
 
